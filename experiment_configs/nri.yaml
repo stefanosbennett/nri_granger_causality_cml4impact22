@@ -1,0 +1,76 @@
+# Experiment settings
+working_dir: 'results/nri/'
+data_path: 'data/var'
+input_size: 1
+num_vars: 3
+gpu: False
+seed: 1
+mode: 'train' # choices=['train', 'eval']
+load_best_model: False
+continue_training: False
+model_type: 'nri'
+load_model: null
+
+# Training params
+num_epochs: 30
+lr: 5.e-3 # 5.e-2
+mom: 0
+batch_size: 10
+val_batch_size: null
+use_adam: True
+lr_decay_factor: 0.5
+lr_decay_steps: 100
+clip_grad_norm: null
+verbose: True
+tune_on_nll: False
+val_teacher_forcing: True
+teacher_forcing_steps: -1
+accumulate_steps: 1
+train_hard_sample: False
+
+# Model params
+num_edge_types: 2
+graph_type: static
+normalize_inputs: False
+
+# Encoder params
+encoder_type: 'RefMLPEncoder' # RefMLPEncoder, UnsharedEncoder
+
+# RefMLPEncoder params
+encoder_rnn_type: 'gru' # choices=['lstm', 'gru']
+input_time_steps: 200 # number of timesteps to feed into the encoder as inputs
+encoder_hidden: 32
+encoder_no_factor: False
+encoder_dropout: 0.0
+encoder_unidirectional: False
+encoder_bidirectional: False
+gumbel_temp: 0.5
+no_encoder_bn: False
+encoder_mlp_num_layers: 3 # number of mlp layers for final edge NN
+encoder_mlp_hidden: 32 # size of mlp hidden state for final edge NN
+
+# Decoder params
+decoder_type: 'LinearDecoder' # 'LinearDecoder', 'MLPDecoder'
+skip_first: True # Set to True to hard code decoder for edge type 1 to zero function
+
+# GraphRNNDecoder or MLPDecoder params
+decoder_hidden: 32 # 256
+decoder_dropout: 0.0
+
+# Loss params
+normalize_kl: True
+normalize_kl_per_var: False
+normalize_nll: True
+normalize_nll_per_var: False
+kl_coef: 1.
+teacher_forcing_prior: False
+prior_variance: 1.
+no_prior: False
+uniform_prior: False
+no_edge_prior: 0.95
+test_burn_in_steps: 199 # the first test_burn_in_steps timesteps of the test input are used as the model inputs during test time
+nll_loss_type: gaussian
+
+error_out_name: 'prediction_errors_%dstep.npy'
+error_suffix: null
+subject_ind: -1

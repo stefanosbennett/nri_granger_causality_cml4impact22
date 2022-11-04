@@ -1,0 +1,47 @@
+# Experiment settings
+working_dir: 'results/var/'
+data_path: 'data/var'
+num_vars: 3
+gpu: False
+seed: 1
+mode: 'train' # choices=['train', 'eval', 'eval_fixedwindow']
+load_best_model: False
+continue_training: False
+model_type: 'VAR'
+load_model: null
+
+# Training Params
+num_epochs: 100
+lr: 5.e-2
+mom: 0
+batch_size: 32
+val_batch_size: null
+use_adam: True
+lr_decay_factor: 0.5
+lr_decay_steps: 200
+clip_grad_norm: null
+verbose: True
+tune_on_nll: True
+val_teacher_forcing: True
+accumulate_steps: 1
+max_burn_in_count: -1
+
+# Model Params
+num_lags: 1
+bias: False
+
+# Encoder params
+teacher_forcing_steps: -1
+
+# Loss params
+normalize_kl: True
+normalize_kl_per_var: False
+normalize_nll: True
+normalize_nll_per_var: False
+kl_coef: 1.
+teacher_forcing_prior: False
+prior_variance: 1.
+test_burn_in_steps: 199
+
+error_out_name: 'prediction_errors_%dstep.npy'
+error_suffix: null
